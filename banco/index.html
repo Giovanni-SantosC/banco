@@ -1,0 +1,183 @@
+<html>
+
+<head>
+
+	<script>
+         var nomeUsuario
+		var saldo = 100.5; //Float
+		function inicio() {
+
+            var senha =prompt("Por Favor Informe Sua senha: ")
+
+            if(senha !== "3589"){
+                alert("Senha Incorreta. Acesso Negado.");
+                inicio()
+
+                return;
+            }
+
+            // desafio 1
+            nomeUsuario = prompt("Qual Seu Nome? ")
+            alert(`Ola ${nomeUsuario} e Um Prazer Ter Você Por Aqui!` )
+            // final desafio 1
+         
+        //   exercicio 8
+
+			var escolha = parseInt(prompt(`Selecione uma opção
+            1.) Saldo
+            2.) Extrato
+            3.) Saque
+            4.) Depósito
+            5.) Transferência
+            6.) Sair
+            `)); 
+
+        // fim do exercicio 8
+
+			// inicio desafio 2
+            switch (escolha) {
+                case 1:
+                    ver_saldo()
+                    break;
+                case 2: 
+                    extrato()
+                    break;
+                case 3:
+                    fazer_saque()
+                    break;
+                case 4:
+                    fazer_deposito()
+                    break;
+                case 5: 
+                    transferencia()
+                    break;
+                case 6: 
+                    sair()
+                    break;
+                default:
+                    erro()
+                    break;
+            }
+            // final desafio 2
+		}		
+
+		function ver_saldo() {
+			alert('Seu saldo atual é: ' + saldo);
+			inicio();
+		}
+
+		function fazer_deposito() {
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			// Not a Number
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número:');
+				fazer_deposito();
+			}if(deposito <= 0){
+                alert("Operaçao Negada")
+            }
+             else {
+				saldo += deposito;
+				ver_saldo();
+			}
+		}
+
+        
+        // desafio 3
+		function fazer_saque() {
+			var saque = parseFloat(prompt('Qual o valor para saque?'));
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+                return;
+			} 
+            // inicio desafio 4 || saque <= 0 final do desafio 4
+            if(saque > saldo || saque <= 0){
+                alert("Operaçao Negada")
+            }else{
+                saldo -= saque;
+            }
+            ver_saldo()
+		}
+        // final desafio 3
+
+        //   exercio 5
+
+        function extrato(){
+                var compras = ["Torra Torra = R$299,99 " , "Bigas Cone = R$499,99 ", "McDonalds = R$99,99 ", "Açai Doces = R$79,99 "]
+                alert(compras)
+            }
+
+            // fim do exercicio 5
+          
+        // exercicio 6
+
+        function transferencia(){
+            var usuarioRecebedor = parseInt(prompt("Digite o numero da conta: "))
+
+            if (isNaN(usuarioRecebedor) || usuarioRecebedor === '') {
+				alert('Por favor, informe um número: ')
+                inicio()
+                return;
+            }
+
+            var valorTransferecia = parseFloat(prompt("Digite O Valor Da Transferencia"));
+
+            // exercicio 7
+
+            if(isNaN(valorTransferecia) || valorTransferecia <=0){
+                alert("Digite Um Valor Valido.");
+                inicio()
+                return;
+            }
+
+            if(valorTransferecia > saldo){
+                alert("Voce Nao Possui Saldo Suficiente Para Essa Tranferencia.");
+
+                inicio()
+                return;
+
+            }
+
+            // fim do exercicio 7
+
+            saldo -= valorTransferecia;
+
+            alert(`Transferencia de R$${valorTransferecia} para a conta ${usuarioRecebedor} Efetuada.`)
+
+           
+            ver_saldo()
+
+        }
+
+        // fim do exercicio 6
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 6');
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				window.close();
+			} else {
+				inicio();
+			}
+            
+            alert(`${nomeUsuario}, Foi Um Prazer Ter Voce aqui!`)
+		}
+
+		
+		
+		inicio();
+        
+	</script>
+    
+</head>
+
+<body>
+    <script src="./js/script.js"></script>
+
+</body>
+
+</html>
